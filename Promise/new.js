@@ -17,18 +17,21 @@ function myPromise(executor) {
 }
 
 //Code testing
-function result(n) {
-  return new myPromise((reject, resolve) =>
-    setTimeout(() => {
-      if (n > 5) {
-        resolve("Resolve");
-      } else {
-        reject("Error");
-      }
-    }, 1000)
-  );
-}
-let num = Math.trunc(Math.random() * 10);
-result(num)
-  .then((res) => console.log(res))
-  .catch((rej) => console.log(rej));
+setTimeout(() => {
+  console.log("Pending");
+  function result(n) {
+    return new myPromise((resolve, reject) =>
+      setTimeout(() => {
+        if (n > 5) {
+          resolve("Resolve");
+        } else {
+          reject("Error");
+        }
+      }, 2000)
+    );
+  }
+  let num = Math.trunc(Math.random() * 10);
+  result(num)
+    .then((res) => console.log(res))
+    .catch((rej) => console.log(rej));
+}, 2000);
