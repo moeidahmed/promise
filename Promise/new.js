@@ -18,7 +18,8 @@ function myPromise(executor) {
 
 //Code testing
 setTimeout(() => {
-  console.log("Pending");
+  const data = fetch("promise.json");
+  console.log(data);
   function result(n) {
     return new myPromise((resolve, reject) =>
       setTimeout(() => {
@@ -34,4 +35,4 @@ setTimeout(() => {
   result(num)
     .then((res) => console.log(res))
     .catch((rej) => console.log(rej));
-}, 2000);
+}, 1000);
